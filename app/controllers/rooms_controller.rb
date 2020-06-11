@@ -10,6 +10,8 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @rooms = Room.all
+    render 'index'
   end
 
   # GET /rooms/new

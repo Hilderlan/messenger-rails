@@ -1,27 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <%= render 'form', room: Room.new %>
+      <hr>
 
-<h1>Rooms</h1>
+      <% @rooms.each do |room| %>
+        <%= link_to room do %>
+          <div class="card mb-2">
+            <div class="card-body">
+              <%= room.name %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-9">
+      <% if @room.present? %>
+        <div class="chat-room">
+          <p><%= @room.name %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <% @room.messages.each do |message| %>
+            <p><%= message.content %> - <%= message.user.name %></p>
+          <% end %>
 
-  <tbody>
-    <% @rooms.each do |room| %>
-      <tr>
-        <td><%= room.name %></td>
-        <td><%= link_to 'Show', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Room', new_room_path %>
+          <div class="chat-box">
+            <%= render 'messages/form', message: Message.new, room: @room, user: current_user %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
