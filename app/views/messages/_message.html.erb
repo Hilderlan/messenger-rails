@@ -1,0 +1,10 @@
+<div class="message mb-2">
+  <div class="<%= message.user == current_user ? 'content-container-me' : 'content-container' %>">
+    <div class="content">
+      <%= message.content %>
+    </div>
+    <div class="author">
+      <%= message.user.name %>
+    </div>
+  </div>
+</div>

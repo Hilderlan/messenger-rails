@@ -14,12 +14,9 @@
   <%= form.hidden_field :room_id, value: room.id %>
   <%= form.hidden_field :user_id, value: user.id %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="input-group">
+    <%= form.text_field :content, placeholder: 'Type your message...', class: 'form-control mr-2' %>
+  <%= form.submit "Add message", class: 'btn btn-primary' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
